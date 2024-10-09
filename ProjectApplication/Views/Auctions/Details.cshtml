@@ -1,0 +1,80 @@
+﻿@model ProjectApplication.ViewModel.AuctionDetailsVM
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+@if (TempData.ContainsKey("SuccessMessage"))
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Auctioneer)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Auctioneer)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.StartingPrice)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.StartingPrice)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.EndDateTime)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.EndDateTime)
+        </dd>
+    </dl>
+</div>
+<p/>
+<div>
+<h4>Bids</h4>
+    <table class="table">
+        <thead>
+            <tr>
+                <th><b>Bidder</b></th>
+                <th><b>Amount</b></th>
+                <th><b>Time Placed</b></th>
+		<th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.BidVMs)
+            {
+                <tr>
+                    <td>
+    		        @Html.DisplayFor(modelItem => item.Bidder)
+		            </td>
+                    <td>
+    		        @Html.DisplayFor(modelItem => item.Amount)
+		            </td>
+                    <td>
+    		        @Html.DisplayFor(modelItem => item.TimePlaced)
+		            </td>
+                  
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

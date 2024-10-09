@@ -1,0 +1,53 @@
+﻿@model IEnumerable<ProjectApplication.ViewModel.AuctionDetailsVM>
+
+@{
+    ViewData["Title"] = "UserBids";
+}
+
+<h1>All the auctions with bid on. </h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Name)</th>
+            <th>@Html.DisplayNameFor(model => model.Description)</th>
+            <th>@Html.DisplayNameFor(model => model.Auctioneer)</th>
+            <th>@Html.DisplayNameFor(model => model.StartingPrice)</th>
+            <th>@Html.DisplayNameFor(model => model.EndDateTime)</th>
+            <th>Bids</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var auctionDetails in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => auctionDetails.Name)</td>
+                <td>@Html.DisplayFor(modelItem => auctionDetails.Description)</td>
+                <td>@Html.DisplayFor(modelItem => auctionDetails.Auctioneer)</td>
+                <td>@Html.DisplayFor(modelItem => auctionDetails.StartingPrice)</td>
+                <td>@Html.DisplayFor(modelItem => auctionDetails.EndDateTime)</td>
+                <td>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th><b>Bidder</b></th>
+                                <th><b>Amount</b></th>
+                                <th><b>Time Placed</b></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var bidVM in auctionDetails.BidVMs)
+                            {
+                                <tr>
+                                    <td>@Html.DisplayFor(modelItem => bidVM.Bidder)</td>
+                                    <td>@Html.DisplayFor(modelItem => bidVM.Amount)</td>
+                                    <td>@Html.DisplayFor(modelItem => bidVM.TimePlaced)</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
